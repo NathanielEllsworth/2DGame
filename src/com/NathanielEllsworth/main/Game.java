@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.NathanielEllsworth.main;
 
 /**
@@ -8,5 +5,11 @@ package com.NathanielEllsworth.main;
  *
  */
 public class Game {
+	
+	
+	public static void main(String args[]){
+		
+		
+	}
 
 }
