@@ -1,6 +1,9 @@
 package com.NathanielEllsworth.main;
 
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 /**
  * @author NathanielEllsworth
@@ -19,7 +22,7 @@ public class Game extends Canvas implements Runnable {
 	
 
 	public Game(){
-		new Window(WIDTH, HEIGHT, "Ellsworth's First Game!", this); // 'this' referring to the game parameter
+		new Window(WIDTH, HEIGHT, "Ellsworth's 2DGame", this); // 'this' referring to the game parameter
 	}
 	
 	
@@ -55,11 +58,11 @@ public class Game extends Canvas implements Runnable {
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while(delta >= 1){
-				tick();
+				tick(); // put in a tick method
 				delta--;
 			}
 			if(running)
-				render();
+				render(); // put in a render method
 			frames++;
 			
 			if(System.currentTimeMillis() - timer > 1000){
@@ -69,6 +72,27 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 		stop();
+	}
+	
+	private void tick(){
+		
+	}
+	
+	private void render(){ //buffer strategy will help lower the frames per second to keep it from crashing
+		BufferStrategy bs = this.getBufferStrategy();
+		if(bs == null){
+			this.createBufferStrategy(3); //three is the number of buffers a game should have (creates 3 buffers within the game)
+			return;
+		}
+		
+		Graphics g = bs.getDrawGraphics();
+		
+		g.setColor(Color.green);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		g.dispose();
+		bs.show();
+		
 	}
 	
 	public static void main(String args[]){
