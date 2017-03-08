@@ -3,6 +3,7 @@
  */
 package com.NathanielEllsworth.main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -14,7 +15,9 @@ public class Player extends GameObject {
 	//add constructor
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
-		// TODO Auto-generated constructor stub
+
+		velX = 1;
+		
 	}
 
 	//since we had an abstract class we need unimplemented methods 
@@ -23,11 +26,16 @@ public class Player extends GameObject {
 
 	public void tick() {
 
+		x += velX; //if velocity x is, say 1, it will just make x plus or equal to 1 every time
+		y += velY;
 		
 	}
 
 
 	public void render(Graphics g) {
+		g.setColor(Color.white);
+		g.fillRect(x, y, 32, 32);
+		
 
 		
 	}

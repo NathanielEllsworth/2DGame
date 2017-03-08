@@ -28,6 +28,10 @@ public class Game extends Canvas implements Runnable {
 		new Window(WIDTH, HEIGHT, "Ellsworth's 2DGame", this); // 'this' referring to the game parameter
 		
 		handler = new Handler();
+		
+		//individual objects in the game
+		handler.addObject(new Player(100, 100, ID.Player)); // player class constructor
+		handler.addObject(new Player(200, 200, ID.Player));
 	}
 	
 	
@@ -92,7 +96,7 @@ public class Game extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.green);
+		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		handler.render(g);
