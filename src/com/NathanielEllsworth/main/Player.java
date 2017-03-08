@@ -31,12 +31,15 @@ public class Player extends GameObject {
 		x += velX; //if velocity x is, say 1, it will just make x plus or equal to 1 every time
 		y += velY;
 		
+		
+		x = Game.clamp(x, 0, Game.WIDTH - 38);
+		y = Game.clamp(y, 0, Game.HEIGHT - 60);
+		//now the player can't fall out of the game's screen thanks to the above two lines
 	}
 
 
 	public void render(Graphics g) {
 		if(id == ID.Player) g.setColor(Color.white);
-		else if(id == ID.Player2) g.setColor(Color.blue);
 		g.fillRect(x, y, 32, 32);
 		
 

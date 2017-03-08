@@ -40,18 +40,9 @@ public class KeyInput extends KeyAdapter{
 				//temoObject is ID.Player because that's what it is.
 			}
 			
-			if(tempObject.getId() == ID.Player2){
-				//key events for player 2
-				
-				if(key == KeyEvent.VK_UP) tempObject.setVelY(-5);
-				if(key == KeyEvent.VK_DOWN) tempObject.setVelY(5);
-				if(key == KeyEvent.VK_RIGHT) tempObject.setVelX(5);
-				if(key == KeyEvent.VK_LEFT) tempObject.setVelX(-5);
-				
-			}
-			
 		}
 		
+		if(key == KeyEvent.VK_ESCAPE) System.exit(1); //you can push escape and the game will end
 	}
 	
 	public void keyReleased(KeyEvent e){ //so for the key release the keys need to stop so velocity is 0
@@ -69,16 +60,6 @@ public class KeyInput extends KeyAdapter{
 				if(key == KeyEvent.VK_A) tempObject.setVelX(0);
 				
 			}
-			
-			if(tempObject.getId() == ID.Player2){
-				//key events for player 2
-				
-				if(key == KeyEvent.VK_UP) tempObject.setVelY(0);
-				if(key == KeyEvent.VK_DOWN) tempObject.setVelY(0);
-				if(key == KeyEvent.VK_RIGHT) tempObject.setVelX(0);
-				if(key == KeyEvent.VK_LEFT) tempObject.setVelX(0);
-				
-			}	
 			
 		}
 		

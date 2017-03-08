@@ -25,6 +25,8 @@ public class Game extends Canvas implements Runnable {
 	//create instance of the handler
 	private Handler handler;
 	
+	private HUD hud;
+	
 
 	public Game(){
 		
@@ -37,13 +39,14 @@ public class Game extends Canvas implements Runnable {
 		
 		new Window(WIDTH, HEIGHT, "Ellsworth's 2DGame", this); // 'this' referring to the game parameter
 		
+		hud = new HUD();
+		
 		r = new Random();
 		
 		//individual objects in the game
 		//spawned the player in the middle of the screen instead of at random
 		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player)); // player class constructor
-		handler.addObject(new Player(WIDTH/2+64, HEIGHT/2-32, ID.Player2));
-			
+		handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
 		
 	}
 	
@@ -69,8 +72,8 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 	
-	public void run(){ //here is the game loop which is like the heart beat of the game, every game has some version of a game loop
-		
+	public void run(){ //here is the game loop which is like the heart beat of the game, every game has some version of a game loop like this
+		this.requestFocus();//this line just means I don't have to click on the screen to have keyboard control on the player
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -100,6 +103,7 @@ public class Game extends Canvas implements Runnable {
 	
 	private void tick(){
 		handler.tick();
+		hud.tick();
 	}
 	
 	private void render(){ //buffer strategy will help lower the frames per second to keep it from crashing
@@ -116,9 +120,24 @@ public class Game extends Canvas implements Runnable {
 		
 		handler.render(g);
 		
+		hud.render(g); // code reads from top to bottom so this goes underneath the handler.
+		//first it renders all of the objects (handler) then it renders the Heads-Up_Display (h.u.d.)
+		//so the heads up display renders on top of the player
+		
 		g.dispose();
 		bs.show();
 		
+	}
+	
+	//clamp method
+	public static int clamp(int var, int min, int max){//max will be the window's with and height, same with minimum. this 
+		//makes it so the player stays inside the games window
+		if(var >= max)
+			return var = max;
+		else if(var <= min)
+			return var = min;
+		else
+			return var;
 	}
 	
 	public static void main(String args[]){
