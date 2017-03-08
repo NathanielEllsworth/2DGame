@@ -30,15 +30,58 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				// in here will be all the key events for player 1
 				
-				if(key == KeyEvent.VK_W) tempObject.setY(tempObject.getY() - 1);
+				if(key == KeyEvent.VK_W) tempObject.setVelY(-5);
+				if(key == KeyEvent.VK_S) tempObject.setVelY(5);
+				if(key == KeyEvent.VK_D) tempObject.setVelX(5);
+				if(key == KeyEvent.VK_A) tempObject.setVelX(-5);
+				
+				//so basically what this is saying is 
+				//"if the object has the ID of Player, then check if the keyboard key W is being hit, then pretend 
+				//temoObject is ID.Player because that's what it is.
+			}
+			
+			if(tempObject.getId() == ID.Player2){
+				//key events for player 2
+				
+				if(key == KeyEvent.VK_UP) tempObject.setVelY(-5);
+				if(key == KeyEvent.VK_DOWN) tempObject.setVelY(5);
+				if(key == KeyEvent.VK_RIGHT) tempObject.setVelX(5);
+				if(key == KeyEvent.VK_LEFT) tempObject.setVelX(-5);
+				
 			}
 			
 		}
 		
 	}
 	
-	public void keyReleased(KeyEvent e){
+	public void keyReleased(KeyEvent e){ //so for the key release the keys need to stop so velocity is 0
 		int key = e.getKeyCode();
+		
+		for(int i = 0; i < handler.object.size(); i ++){
+			GameObject tempObject = handler.object.get(i); 
+			
+			if(tempObject.getId() == ID.Player){
+				// in here will be all the key events for player 1
+				
+				if(key == KeyEvent.VK_W) tempObject.setVelY(0);
+				if(key == KeyEvent.VK_S) tempObject.setVelY(0);
+				if(key == KeyEvent.VK_D) tempObject.setVelX(0);
+				if(key == KeyEvent.VK_A) tempObject.setVelX(0);
+				
+			}
+			
+			if(tempObject.getId() == ID.Player2){
+				//key events for player 2
+				
+				if(key == KeyEvent.VK_UP) tempObject.setVelY(0);
+				if(key == KeyEvent.VK_DOWN) tempObject.setVelY(0);
+				if(key == KeyEvent.VK_RIGHT) tempObject.setVelX(0);
+				if(key == KeyEvent.VK_LEFT) tempObject.setVelX(0);
+				
+			}	
+			
+		}
+		
 	}
 
 }
