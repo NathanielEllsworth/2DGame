@@ -4,6 +4,7 @@
 package com.NathanielEllsworth.main;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 /**
  * @author NathanielEllsworth
@@ -31,6 +32,7 @@ public abstract class GameObject {
 	//void = method
 	public abstract void tick();
 	public abstract void render(Graphics g);
+	public abstract Rectangle getBounds(); //health drops when struck by an enemy
 	
 	//getters and setters
 	
