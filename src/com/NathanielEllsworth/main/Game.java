@@ -31,13 +31,18 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler(); // handler above the window to avoid sometimes getting an error and crash sometimes
 		//because the window class was being created before the handler class was when the game was initializing starting
 		//the game does not see anything until it is initialized
+		this.addKeyListener(new KeyInput(handler));//tells the game "Hey, were going to be using keyboard keys so make sure you're
+		//'listening' for it." I'm pretty sure it's called the ascii keys where Q will be 81, A is 65, Z is 90, etc. each
+		//number corresponds to a different key on the keyboard
 		
 		new Window(WIDTH, HEIGHT, "Ellsworth's 2DGame", this); // 'this' referring to the game parameter
 		
 		r = new Random();
 		
 		//individual objects in the game
+		//spawned the player in the middle of the screen instead of at random
 		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player)); // player class constructor
+		handler.addObject(new Player(WIDTH/2+64, HEIGHT/2-32, ID.Player2));
 			
 		
 	}
