@@ -20,9 +20,14 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	
+	//create instance of the handler
+	private Handler handler;
+	
 
 	public Game(){
 		new Window(WIDTH, HEIGHT, "Ellsworth's 2DGame", this); // 'this' referring to the game parameter
+		
+		handler = new Handler();
 	}
 	
 	
@@ -75,7 +80,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private void tick(){
-		
+		handler.tick();
 	}
 	
 	private void render(){ //buffer strategy will help lower the frames per second to keep it from crashing
@@ -89,6 +94,8 @@ public class Game extends Canvas implements Runnable {
 		
 		g.setColor(Color.green);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		handler.render(g);
 		
 		g.dispose();
 		bs.show();
