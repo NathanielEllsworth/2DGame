@@ -5,19 +5,22 @@ package com.NathanielEllsworth.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 /**
  * @author NathanielEllsworth
  *
  */
 public class Player extends GameObject {
+	
+	Random r = new Random();
 
 	//add constructor
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
 
-		velX = 1;
-		
+		velX = r.nextInt(5) + 1;
+		velY = r.nextInt(5);
 	}
 
 	//since we had an abstract class we need unimplemented methods 

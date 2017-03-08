@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 /**
  * @author NathanielEllsworth
@@ -20,21 +21,30 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	
+	private Random r; 
 	//create instance of the handler
 	private Handler handler;
 	
 
 	public Game(){
+		
+		handler = new Handler(); // handler above the window to avoid sometimes getting an error and crash sometimes
+		//because the window class was being created before the handler class was when the game was initializing starting
+		//the game does not see anything until it is initialized
+		
 		new Window(WIDTH, HEIGHT, "Ellsworth's 2DGame", this); // 'this' referring to the game parameter
 		
-		handler = new Handler();
+		r = new Random();
 		
 		//individual objects in the game
-		handler.addObject(new Player(100, 100, ID.Player)); // player class constructor
-		handler.addObject(new Player(200, 200, ID.Player));
+		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player)); // player class constructor
+			
+		
 	}
 	
-	
+	//so the order of the launch of the game is the Window is created, which starts the Start method, which then called
+	//the Run method, which then called the Render method, which called the Handler method. So the Handler method needs
+	//to be above the window method so the window knows what it is. Code compiles from top to bottom
 	
 	public synchronized void start(){//the entire game is going to run within this thread
 		
