@@ -13,7 +13,8 @@ public enum ID {
 	
 	Player(), // what this does is creates an enumeration for a player and enemy so now I can ID 
 			  // something as a player and something as an enemy
-	BasicEnemy();
+	BasicEnemy(),
+	Trail();
 	
 
 }
