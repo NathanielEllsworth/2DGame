@@ -32,7 +32,7 @@ public abstract class GameObject {
 	//void = method
 	public abstract void tick();
 	public abstract void render(Graphics g);
-	public abstract Rectangle getBounds(); //health drops when struck by an enemy
+	public abstract Rectangle getBounds(); //health drops when struck by an enemy, rectangle collision true/false algorithm 
 	
 	//getters and setters
 	

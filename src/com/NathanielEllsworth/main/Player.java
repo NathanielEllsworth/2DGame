@@ -5,6 +5,8 @@ package com.NathanielEllsworth.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.util.Random;
 
 /**
@@ -26,6 +28,11 @@ public class Player extends GameObject {
 	//now that I made it abstract I can code within the abstract tick and render method that I created
 	//in the game object class
 
+	public Rectangle getBounds(){
+		return new Rectangle(x, y, 32, 32); //rectangle collision bounds for player (loss of health)
+	}
+	
+	
 	public void tick() {
 
 		x += velX; //if velocity x is, say 1, it will just make x plus or equal to 1 every time
@@ -39,8 +46,15 @@ public class Player extends GameObject {
 
 
 	public void render(Graphics g) {
-		if(id == ID.Player) g.setColor(Color.white);
-		g.fillRect(x, y, 32, 32);
+		
+		Graphics2D g2d = (Graphics2D) g; // instead of new just cast it over 
+		
+		g.setColor(Color.green);
+		g2d.draw(getBounds());
+		
+		
+		//if(id == ID.Player) g.setColor(Color.white);
+		//g.fillRect(x, y, 32, 32);
 		
 
 		

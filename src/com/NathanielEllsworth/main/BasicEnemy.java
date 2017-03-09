@@ -5,6 +5,7 @@ package com.NathanielEllsworth.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 /**
  * @author NathanielEllsworth
@@ -19,6 +20,11 @@ public class BasicEnemy extends GameObject{
 		velY = 5;
 		
 	}
+	
+	public Rectangle getBounds(){
+		return new Rectangle(x, y, 16, 16); //rectangle collision bounds for basic enemy (loss of health)
+	}
+	
 
 	public void tick() {
 
