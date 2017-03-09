@@ -55,7 +55,7 @@ public class Player extends GameObject {
 			
 			GameObject tempObject = handler.object.get(i);
 			
-			if(tempObject.getId() == ID.BasicEnemy){//basically what this says is if our tempObject is our BasicEnemy, then this code below this point deals with BasicEnemy
+			if(tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FastEnemy){//basically what this says is if our tempObject is our BasicEnemy, then this code below this point deals with BasicEnemy
 				if(getBounds().intersects(tempObject.getBounds())){//if the bounds of the enemy intersects, lower the health by 2
 					//collision code - anything that happens in here will collide with it
 					HUD.HEALTH -=2; // this code dictates the amount the health bar goes down when the player comes in contact with an enemy

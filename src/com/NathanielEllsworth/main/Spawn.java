@@ -3,6 +3,8 @@
  */
 package com.NathanielEllsworth.main;
 
+import java.util.Random;
+
 /**
  * @author NathanielEllsworth
  *
@@ -11,7 +13,9 @@ public class Spawn {
 	
 	private Handler handler;
 	private HUD hud;
+	private Random r = new Random();
 	
+	private int scoreKeep = 0;
 	
 	
 	public Spawn(Handler handler, HUD hud){
@@ -24,7 +28,23 @@ public class Spawn {
 	}
 	
 	public void tick(){
+		scoreKeep++;
 		
+		if(scoreKeep >= 100){ //every time the score reaches this number, the player will reach the next level, this goes on indefinitely (or a max integer value)
+			scoreKeep = 0;
+			hud.setLevel(hud.getLevel() + 1);
+			
+			if(hud.getLevel() == 2){ //comment out this if line to have an enemy appear every time scoreKeep reaches that interval
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+				
+			}else if(hud.getLevel() == 3){ 
+				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+				
+			}else if(hud.getLevel() == 4){ 
+				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.FastEnemy, handler));
+				
+			}
+		}
 	}
 	
 }

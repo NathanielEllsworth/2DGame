@@ -51,6 +51,7 @@ public class Game extends Canvas implements Runnable {
 		//individual objects in the game
 		//spawned the player in the middle of the screen instead of at random
 		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler)); // player class constructor
+		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));//level-1 will have an enemy
 		
 		
 		//basic enemies
@@ -115,6 +116,7 @@ public class Game extends Canvas implements Runnable {
 	private void tick(){
 		handler.tick();
 		hud.tick();
+		spawner.tick();
 	}
 	
 	private void render(){ //buffer strategy will help lower the frames per second to keep it from crashing

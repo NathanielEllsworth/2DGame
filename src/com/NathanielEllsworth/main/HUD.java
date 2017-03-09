@@ -31,6 +31,8 @@ public class HUD {
 		greenValue = Game.clamp(greenValue, 0, 255); // clamp the green to transition into red when low
 		
 		greenValue = HEALTH*2;
+		
+		score++; //makes the score go up, level changes every 1,000 points
 	}
 	
 	public void render(Graphics g){
@@ -42,11 +44,28 @@ public class HUD {
 		g.drawRect(15, 15, 200, 32); //just puts a boarder around the health bar
 		
 		
-		//drawing out the score and level
+		//drawing out the score and level displays
 		g.drawString("Score: " + score, 17, 64); // x variable is 17, y variable is 64
 		g.drawString("Level: " + level, 17, 80);// x variable is 17, y variable is 80
 		
 		
 	}
+	
+	public void score(int score){
+		this.score = score;
+	}
+	
+	public int getScore(){
+		return score;
+	}
+	
+	public int getLevel(){
+		return level;
+	}
+	
+	public void setLevel(int level){
+		this.level = level;
+	}
+	
 
 }
