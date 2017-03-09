@@ -45,7 +45,7 @@ public class Game extends Canvas implements Runnable {
 		
 		//individual objects in the game
 		//spawned the player in the middle of the screen instead of at random
-		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player)); // player class constructor
+		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler)); // player class constructor
 		handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
 		
 	}

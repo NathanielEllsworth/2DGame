@@ -16,11 +16,12 @@ import java.util.Random;
 public class Player extends GameObject {
 	
 	Random r = new Random();
+	Handler handler;
 
 	//add constructor
-	public Player(int x, int y, ID id) {
+	public Player(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
-
+		this.handler = handler;
 		
 	}
 
@@ -42,19 +43,46 @@ public class Player extends GameObject {
 		x = Game.clamp(x, 0, Game.WIDTH - 38);
 		y = Game.clamp(y, 0, Game.HEIGHT - 60);
 		//now the player can't fall out of the game's screen thanks to the above two lines
+		
+		collision();
+	}
+	
+	private void collision(){
+		for(int i = 0; i < handler.object.size(); i++){
+			
+			GameObject tempObject = handler.object.get(i);
+			
+			if(tempObject.getId() == ID.BasicEnemy){//basically what this says is if our tempObject is our BasicEnemy, then this code below this point deals with BasicEnemy
+				if(getBounds().intersects(tempObject.getBounds())){//if the bounds of the enemy intersects, lower the health by 2
+					//collision code - anything that happens in here will collide with it
+					HUD.HEALTH -=2; // this code dictates the amount the health bar goes down when the player comes in contact with an enemy
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+			
+			
+		}
 	}
 
 
 	public void render(Graphics g) {
 		
-		Graphics2D g2d = (Graphics2D) g; // instead of new just cast it over 
+		//Graphics2D g2d = (Graphics2D) g; // instead of new just cast it over 
 		
-		g.setColor(Color.green);
-		g2d.draw(getBounds());
+		//g.setColor(Color.green);
+		//g2d.draw(getBounds());
+		//above not necessary but will help conceptualize (show) the bounds of the collision bounds of the player
 		
+		//if(id == ID.Player) 
 		
-		//if(id == ID.Player) g.setColor(Color.white);
-		//g.fillRect(x, y, 32, 32);
+		g.setColor(Color.white);
+		g.fillRect(x, y, 32, 32);
 		
 
 		

@@ -19,8 +19,6 @@ public class HUD {
 	//this will be the only instance HEALTH will be needed by an object (the player)
 	
 	public void tick(){
-		HEALTH--;
-		
 		HEALTH = Game.clamp(HEALTH, 0, 100); // clamps the health inside the health bar, the health also won't be able to go above 100 (max)
 	}
 	
