@@ -21,6 +21,11 @@ public class HUD {
 	private int greenValue = 255; //r.g.b. (red green blue) color runs the full spectrum of colors at 255
 	//100% green (255) will transition into red (75)
 	
+	private int score = 0;
+	
+	private int level = 1;
+	
+	
 	public void tick(){
 		HEALTH = Game.clamp(HEALTH, 0, 100); // clamps the health inside the health bar, the health also won't be able to go above 100 (max)
 		greenValue = Game.clamp(greenValue, 0, 255); // clamp the green to transition into red when low
@@ -35,6 +40,13 @@ public class HUD {
 		g.fillRect(15, 15, HEALTH * 2, 32);
 		g.setColor(Color.white);
 		g.drawRect(15, 15, 200, 32); //just puts a boarder around the health bar
+		
+		
+		//drawing out the score and level
+		g.drawString("Score: " + score, 17, 64); // x variable is 17, y variable is 64
+		g.drawString("Level: " + level, 17, 80);// x variable is 17, y variable is 80
+		
+		
 	}
 
 }

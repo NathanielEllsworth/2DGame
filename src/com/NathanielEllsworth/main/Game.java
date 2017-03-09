@@ -27,6 +27,8 @@ public class Game extends Canvas implements Runnable {
 	
 	private HUD hud;
 	
+	private Spawn spawner;
+	
 
 	public Game(){
 		
@@ -40,6 +42,9 @@ public class Game extends Canvas implements Runnable {
 		new Window(WIDTH, HEIGHT, "Ellsworth's 2DGame", this); // 'this' referring to the game parameter
 		
 		hud = new HUD();
+		
+		spawner = new Spawn(handler, hud); // will get an error if this line is above the next because h.u.d. has to be created first.
+		//remember code reads from the top down.
 		
 		r = new Random();
 		
