@@ -44,7 +44,8 @@ public class Player extends GameObject {
 		y = Game.clamp(y, 0, Game.HEIGHT - 60);
 		//now the player can't fall out of the game's screen thanks to the above two lines
 		
-		handler.addObject(new Trail(x, y, ID.Trail, Color.white, 32, 32, 0.05f, handler));
+		//handler.addObject(new Trail(x, y, ID.Trail, Color.white, 32, 32, 0.05f, handler));
+		//player's trail
 		
 		collision();
 	}
