@@ -27,8 +27,8 @@ public class HUD {
 	
 	
 	public void tick(){
-		HEALTH = Game.clamp(HEALTH, 0, 100); // clamps the health inside the health bar, the health also won't be able to go above 100 (max)
-		greenValue = Game.clamp(greenValue, 0, 255); // clamp the green to transition into red when low
+		HEALTH = (int) Game.clamp(HEALTH, 0, 100); // clamps the health inside the health bar, the health also won't be able to go above 100 (max)
+		greenValue = (int) Game.clamp(greenValue, 0, 255); // clamp the green to transition into red when low
 		
 		greenValue = HEALTH*2;
 		

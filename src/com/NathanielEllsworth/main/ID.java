@@ -15,6 +15,7 @@ public enum ID {
 			  // something as a player and something as an enemy
 	BasicEnemy(),
 	FastEnemy(),
+	SmartEnemy(),
 	Trail();
 	
 

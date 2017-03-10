@@ -143,7 +143,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	//clamp method
-	public static int clamp(int var, int min, int max){//max will be the window's with and height, same with minimum. this 
+	public static float clamp(float var, float min, float max){//max will be the window's with and height, same with minimum. this 
 		//makes it so the player stays inside the games window
 		if(var >= max)
 			return var = max;

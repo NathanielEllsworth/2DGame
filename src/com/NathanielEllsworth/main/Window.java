@@ -7,7 +7,9 @@ import javax.swing.JFrame;
 
 /**
  * 
- * @author NathanielEllsworth the only purpose of this class is to just create the window of the game
+ * @author NathanielEllsworth
+ * 
+ * the only purpose of this class is to create the window of the game
  *
  */
 public class Window extends Canvas {

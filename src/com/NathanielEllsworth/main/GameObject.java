@@ -17,13 +17,13 @@ import java.awt.Rectangle;
  */
 public abstract class GameObject {
 	
-	protected int x, y; // protected, (like public/private) can only be accessed by which object inherits the game object
+	protected float x, y; // protected, (like public/private) can only be accessed by which object inherits the game object
 	protected ID id; //because of the ID enumeration 
-	protected int velX, velY; //velocity x and y will create the speed in the game in the x direction and y direction
+	protected float velX, velY; //velocity x and y will create the speed in the game in the x direction and y direction
 	
 
 	//constructor
-	public GameObject (int x, int y, ID id){ //the variables above will automatically be set by the variables below
+	public GameObject (float x, float y, ID id){ //the variables above will automatically be set by the variables below
 		this.x = x;
 		this.y = y;
 		this.id = id;
@@ -40,9 +40,9 @@ public abstract class GameObject {
 	
 	public void setY(int y){this.y = y;}
 	
-	public int getX(){return x;}
+	public float getX(){return x;}
 	
-	public int getY(){return y;}
+	public float getY(){return y;}
 	
 	public void setId(ID id){this.id = id;}
 	
@@ -52,9 +52,9 @@ public abstract class GameObject {
 	
 	public void setVelY(int velY){this.velY = velY;}
 	
-	public int getVelX(){return velX;}
+	public float getVelX(){return velX;}
 	
-	public int getVelY(){return velY;}
+	public float getVelY(){return velY;}
 	
 	
 	
