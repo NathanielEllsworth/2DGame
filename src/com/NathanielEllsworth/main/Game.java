@@ -53,6 +53,9 @@ public class Game extends Canvas implements Runnable {
 		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler)); // player class constructor
 		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));//level-1 will have an enemy
 		
+		//handler.addObject(new EnemyBoss((Game.WIDTH / 2)-48, -1, ID.EnemyBoss, handler));
+		
+		
 		
 		//basic enemies
 		//handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
