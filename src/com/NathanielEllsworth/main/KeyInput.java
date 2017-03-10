@@ -15,9 +15,15 @@ public class KeyInput extends KeyAdapter{
 	//like the getters and setters inside the game object class
 	
 	private Handler handler;//*this*
+	private boolean[] keyDown = new boolean[4]; //fixing the 'sticky' keyboard keys when the player is moving 
 	
 	public KeyInput(Handler handler){
 		this.handler = handler; //basically whatever I put into the constructor of the handler will equal *this* (the above)
+		
+		keyDown[0]=false; //key W     \
+		keyDown[1]=false; //key S      \ Basically these boolean values are asking "are the keys pressed? yes or no."
+		keyDown[2]=false; //key D      /
+		keyDown[3]=false; //key A     /
 	}
 	
 	public void keyPressed(KeyEvent e){
@@ -30,10 +36,10 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				// in here will be all the key events for player 1
 				
-				if(key == KeyEvent.VK_W) tempObject.setVelY(-5);
-				if(key == KeyEvent.VK_S) tempObject.setVelY(5);
-				if(key == KeyEvent.VK_D) tempObject.setVelX(5);
-				if(key == KeyEvent.VK_A) tempObject.setVelX(-5);
+				if(key == KeyEvent.VK_W) { tempObject.setVelY(-5); keyDown[0]=true; }
+				if(key == KeyEvent.VK_S) { tempObject.setVelY(5); keyDown[1]=true; }
+				if(key == KeyEvent.VK_D) { tempObject.setVelX(5); keyDown[2]=true; }
+				if(key == KeyEvent.VK_A) { tempObject.setVelX(-5); keyDown[3]=true; }
 				
 				//so basically what this is saying is 
 				//"if the object has the ID of Player, then check if the keyboard key W is being hit, then pretend 
@@ -54,10 +60,15 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				// in here will be all the key events for player 1
 				
-				if(key == KeyEvent.VK_W) tempObject.setVelY(0);
-				if(key == KeyEvent.VK_S) tempObject.setVelY(0);
-				if(key == KeyEvent.VK_D) tempObject.setVelX(0);
-				if(key == KeyEvent.VK_A) tempObject.setVelX(0);
+				if(key == KeyEvent.VK_W) keyDown[0]=false; //tempObject.setVelY(0);
+				if(key == KeyEvent.VK_S) keyDown[1]=false; //tempObject.setVelY(0);
+				if(key == KeyEvent.VK_D) keyDown[2]=false; //tempObject.setVelX(0);
+				if(key == KeyEvent.VK_A) keyDown[3]=false; //tempObject.setVelX(0);
+				
+				//for the vertical movement (y axis)  
+				if(!keyDown[0] && !keyDown[1]) tempObject.setVelY(0);
+				//for the horizontal movement (x axis)  
+				if(!keyDown[2] && !keyDown[3]) tempObject.setVelX(0);
 				
 			}
 			
