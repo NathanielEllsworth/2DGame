@@ -46,9 +46,11 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler(); // handler above the window to avoid sometimes getting an error and crash sometimes
 		//because the window class was being created before the handler class was when the game was initializing starting
 		//the game does not see anything until it is initialized
+		menu = new Menu(this, handler);
 		this.addKeyListener(new KeyInput(handler));//tells the game "Hey, were going to be using keyboard keys so make sure you're
 		//'listening' for it." I'm pretty sure it's called the ascii keys where Q will be 81, A is 65, Z is 90, etc. each
 		//number corresponds to a different key on the keyboard
+		this.addMouseListener(menu);
 		
 		new Window(WIDTH, HEIGHT, "Ellsworth's 2DGame", this); // 'this' referring to the game parameter
 		
@@ -57,7 +59,7 @@ public class Game extends Canvas implements Runnable {
 		spawner = new Spawn(handler, hud); // will get an error if this line is above the next because h.u.d. has to be created first.
 		//remember code reads from the top down.
 		
-		menu = new Menu();
+		
 		
 		r = new Random();
 		
@@ -167,9 +169,8 @@ public class Game extends Canvas implements Runnable {
 			hud.render(g); // code reads from top to bottom so this goes underneath the handler.
 			//first it renders all of the objects (handler) then it renders the Heads-Up_Display (h.u.d.)
 			//so the heads up display renders on top of the player
-		}else{
-			g.setColor(Color.white);
-			g.drawString("Menu", 100, 100);
+		}else if(gameState == STATE.Menu){
+			menu.render(g);
 		}
 		
 		g.dispose();
