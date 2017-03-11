@@ -29,6 +29,17 @@ public class Game extends Canvas implements Runnable {
 	
 	private Spawn spawner;
 	
+	private Menu menu;
+	
+	public enum STATE{ //adding menu before the game starts
+		Menu,
+		Game
+	};
+	
+	public STATE gameState = STATE.Menu;//(replace 'Menu' with 'Game' and it renders the game) 
+	//now I can cast the enum STATE as a type, like an int, boolean, thread that holds those two types of 
+	//values (Menu, Game)
+	
 
 	public Game(){
 		
@@ -46,12 +57,19 @@ public class Game extends Canvas implements Runnable {
 		spawner = new Spawn(handler, hud); // will get an error if this line is above the next because h.u.d. has to be created first.
 		//remember code reads from the top down.
 		
+		menu = new Menu();
+		
 		r = new Random();
+		
+		if(gameState == STATE.Game)
+		{
+			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler)); // player class constructor
+			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));//level-1 will have an enemy
+		}
 		
 		//individual objects in the game
 		//spawned the player in the middle of the screen instead of at random
-		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler)); // player class constructor
-		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));//level-1 will have an enemy
+		
 		
 		//handler.addObject(new EnemyBoss((Game.WIDTH / 2)-48, -1, ID.EnemyBoss, handler));
 		
@@ -118,8 +136,15 @@ public class Game extends Canvas implements Runnable {
 	
 	private void tick(){
 		handler.tick();
-		hud.tick();
-		spawner.tick();
+		
+		if(gameState == STATE.Game) //if gameState equals STATE.Game then update the heads up display, spawner
+		{
+			hud.tick();
+			spawner.tick();
+		}else if(gameState == STATE.Menu){
+			menu.tick();
+		}
+		
 	}
 	
 	private void render(){ //buffer strategy will help lower the frames per second to keep it from crashing
@@ -136,9 +161,16 @@ public class Game extends Canvas implements Runnable {
 		
 		handler.render(g);
 		
-		hud.render(g); // code reads from top to bottom so this goes underneath the handler.
-		//first it renders all of the objects (handler) then it renders the Heads-Up_Display (h.u.d.)
-		//so the heads up display renders on top of the player
+		
+		if(gameState == STATE.Game)
+		{
+			hud.render(g); // code reads from top to bottom so this goes underneath the handler.
+			//first it renders all of the objects (handler) then it renders the Heads-Up_Display (h.u.d.)
+			//so the heads up display renders on top of the player
+		}else{
+			g.setColor(Color.white);
+			g.drawString("Menu", 100, 100);
+		}
 		
 		g.dispose();
 		bs.show();
