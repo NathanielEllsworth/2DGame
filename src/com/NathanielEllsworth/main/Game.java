@@ -33,6 +33,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public enum STATE{ //adding menu before the game starts
 		Menu,
+		Help,
 		Game
 	};
 	
@@ -169,7 +170,7 @@ public class Game extends Canvas implements Runnable {
 			hud.render(g); // code reads from top to bottom so this goes underneath the handler.
 			//first it renders all of the objects (handler) then it renders the Heads-Up_Display (h.u.d.)
 			//so the heads up display renders on top of the player
-		}else if(gameState == STATE.Menu){
+		}else if(gameState == STATE.Menu || gameState == STATE.Help){
 			menu.render(g);
 		}
 		

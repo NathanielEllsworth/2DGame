@@ -33,10 +33,32 @@ public class Menu extends MouseAdapter{
 		int my = e.getY();
 		//mx is mouse x, my is mouse y
 		
+		if(game.gameState == STATE.Menu){
+		
+		//play button
 		if(mouseOver(mx, my, 210, 150, 200, 64)){
 			game.gameState = STATE.Game;
 			handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler)); // player class constructor
 			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));//level-1 will have an enemy
+		}
+			
+		//help button
+		if(mouseOver(mx, my, 210, 250, 200, 64)){
+			game.gameState = STATE.Help;
+		}
+					
+		//quit button
+		if(mouseOver(mx, my, 210, 350, 200, 64)){
+			System.exit(1);
+		}
+	}
+		
+		//back button for help
+		if(game.gameState == STATE.Help){
+			if(mouseOver(mx, my, 210, 350, 200, 64)){
+				game.gameState = STATE.Menu;
+				return;
+			}
 		}
 	}
 	
@@ -62,26 +84,50 @@ public class Menu extends MouseAdapter{
 	
 	
 	public void render(Graphics g){
-		Font fnt = new Font("arial", 1, 50);
-		Font fnt2 = new Font("arial", 1, 30);
-		
-		g.setFont(fnt);
-		g.setColor(Color.white);
-		g.drawString("Menu", 240, 70);
-		
-		g.setFont(fnt2);
-		g.setColor(Color.white);
-		g.drawRect(210, 150, 200, 64); // debug hot-swap, (CTRL + S) to see real time code changes 
-		g.drawString("Play", 270, 190);
-		
-		
-		g.setColor(Color.white);
-		g.drawRect(210, 250, 200, 64);
-		g.drawString("Help", 270, 290);
-		
-		g.setColor(Color.white);
-		g.drawRect(210, 350, 200, 64);
-		g.drawString("Quit", 270, 390);
+		if(game.gameState == STATE.Menu){
+			
+			Font fnt = new Font("arial", 1, 50);
+			Font fnt2 = new Font("arial", 1, 30);
+			
+			g.setFont(fnt);
+			g.setColor(Color.white);
+			g.drawString("Menu", 240, 70);
+			
+			//Play
+			g.setFont(fnt2);
+			g.drawRect(210, 150, 200, 64); // debug hot-swap, (CTRL + S) to see real time code changes 
+			g.drawString("Play", 270, 190);
+			
+			//Help
+			g.drawRect(210, 250, 200, 64);
+			g.drawString("Help", 270, 290);
+			
+			//Quit
+			g.drawRect(210, 350, 200, 64);
+			g.drawString("Quit", 270, 390);
+			
+			//Help page
+		}else if(game.gameState == STATE.Help){
+			Font fnt = new Font("arial", 1, 50);
+			Font fnt2 = new Font("arial", 1, 30);
+			Font fnt3 = new Font("arial", 1, 20);
+			
+			//Help header
+			g.setFont(fnt);
+			g.setColor(Color.white);
+			g.drawString("Help", 240, 70);
+			
+			g.setFont(fnt3);
+			g.drawString("Use W, A, S, D, keys to move player and dodge enemies", 60, 210);
+			
+			
+			//Back Button
+			g.setFont(fnt2);
+			g.drawRect(210, 350, 200, 64);
+			g.drawString("Back", 270, 390);
+
+		}
+
 	}
 
 }
