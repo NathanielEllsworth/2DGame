@@ -55,6 +55,9 @@ public class Game extends Canvas implements Runnable {
 		//number corresponds to a different key on the keyboard
 		this.addMouseListener(menu);
 		
+		AudioPlayer.load();
+		AudioPlayer.getMusic("music").loop();
+		
 		new Window(WIDTH, HEIGHT, "Ellsworth's 2DGame", this); // 'this' referring to the game parameter
 		
 		
