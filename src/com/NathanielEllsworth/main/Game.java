@@ -21,6 +21,12 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	
+	public static boolean paused = false; //pausing the game during game play
+	public int diff = 0;
+	
+	//0 = normal
+	//1 = hard
+	
 	private Random r; 
 	//create instance of the handler
 	private Handler handler;
@@ -33,6 +39,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public enum STATE{ //adding menu before the game starts
 		Menu,
+		Select,
 		Help,
 		Game,
 		End
@@ -50,7 +57,7 @@ public class Game extends Canvas implements Runnable {
 		//the game does not see anything until it is initialized
 		hud = new HUD();//H.U.D. has to be above 'Menu' to compile correctly (you will get an error if this is anywhere else)(have to create it before you can use it)
 		menu = new Menu(this, handler, hud);
-		this.addKeyListener(new KeyInput(handler));//tells the game "Hey, were going to be using keyboard keys so make sure you're
+		this.addKeyListener(new KeyInput(handler, this));//tells the game "Hey, were going to be using keyboard keys so make sure you're
 		//'listening' for it." I'm pretty sure it's called the ascii keys where Q will be 81, A is 65, Z is 90, etc. each
 		//number corresponds to a different key on the keyboard
 		this.addMouseListener(menu);
@@ -62,7 +69,7 @@ public class Game extends Canvas implements Runnable {
 		
 		
 		
-		spawner = new Spawn(handler, hud); // will get an error if this line is above the next because h.u.d. has to be created first.
+		spawner = new Spawn(handler, hud, this); // will get an error if this line is above the next because h.u.d. has to be created first.
 		//remember code reads from the top down.
 		
 		
@@ -147,23 +154,31 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private void tick(){
-		handler.tick();
+		
 		
 		if(gameState == STATE.Game) //if gameState equals STATE.Game then update the heads up display, spawner
 		{
-			hud.tick();
-			spawner.tick();
-			
-			if(HUD.HEALTH <= 0){
-				HUD.HEALTH = 100;
-				gameState = STATE.End; //When you run out of health, the game ends here!
-				handler.clearEnemies();
-				for(int i = 0; i < 15; i++){
-					handler.addObject(new MenuParticle(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.MenuParticle, handler));
+			if(!paused)
+			{
+				hud.tick();
+				spawner.tick();
+				handler.tick();
+				
+				
+				if(HUD.HEALTH <= 0){
+					HUD.HEALTH = 100;
+					gameState = STATE.End; //When you run out of health, the game ends here!
+					handler.clearEnemies();
+					for(int i = 0; i < 15; i++){
+						handler.addObject(new MenuParticle(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.MenuParticle, handler));
+					}
 				}
 			}
-		}else if(gameState == STATE.Menu || gameState == STATE.End){
+			
+		}else if(gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select){
 			menu.tick();
+			handler.tick();
+			
 		}
 		
 	}
@@ -182,13 +197,18 @@ public class Game extends Canvas implements Runnable {
 		
 		handler.render(g);
 		
+		if(paused){
+			g.setColor(Color.white);
+			g.drawString("PAUSED", 100, 100);
+		}
+		
 		
 		if(gameState == STATE.Game)
 		{
 			hud.render(g); // code reads from top to bottom so this goes underneath the handler.
 			//first it renders all of the objects (handler) then it renders the Heads-Up_Display (h.u.d.)
 			//so the heads up display renders on top of the player
-		}else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End){
+		}else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select){
 			menu.render(g);
 		}
 		

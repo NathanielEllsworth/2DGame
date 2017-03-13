@@ -6,6 +6,8 @@ package com.NathanielEllsworth.main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import com.NathanielEllsworth.main.Game.STATE;
+
 /**
  * @author NathanielEllsworth
  *
@@ -17,8 +19,12 @@ public class KeyInput extends KeyAdapter{
 	private Handler handler;//*this*
 	private boolean[] keyDown = new boolean[4]; //fixing the 'sticky' keyboard keys when the player is moving 
 	
-	public KeyInput(Handler handler){
+	Game game;
+	
+	public KeyInput(Handler handler, Game game){
 		this.handler = handler; //basically whatever I put into the constructor of the handler will equal *this* (the above)
+		
+		this.game = game;
 		
 		keyDown[0]=false; //key W     \
 		keyDown[1]=false; //key S      \ Basically these boolean values are asking "are the keys pressed? yes or no."
@@ -47,7 +53,15 @@ public class KeyInput extends KeyAdapter{
 			}
 			
 		}
-		
+		if(key == KeyEvent.VK_P)
+		{
+			if(game.gameState == STATE.Game)
+			{
+				if(Game.paused) Game.paused = false; //if the game is already paused, then paused equals false
+				else Game.paused = true;
+			}
+			
+		}
 		if(key == KeyEvent.VK_ESCAPE) System.exit(1); //you can push escape and the game will end
 	}
 	
