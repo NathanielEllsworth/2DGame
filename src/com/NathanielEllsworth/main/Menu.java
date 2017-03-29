@@ -167,10 +167,12 @@ public class Menu extends MouseAdapter{
 			//Help header
 			g.setFont(fnt);
 			g.setColor(Color.white);
-			g.drawString("Help", 240, 70);
+			g.drawString("Help", 255, 70);
 			
 			g.setFont(fnt3);
 			g.drawString("Use W, A, S, D, keys to move player and dodge enemies", 60, 210);
+			g.drawString("Use the P key to Pause the game", 160, 250);
+			g.drawString("Use the Space Bar key to access the Shop", 100, 285);
 			
 			
 			//Back Button

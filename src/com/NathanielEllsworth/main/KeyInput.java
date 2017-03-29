@@ -63,6 +63,10 @@ public class KeyInput extends KeyAdapter{
 			
 		}
 		if(key == KeyEvent.VK_ESCAPE) System.exit(1); //you can push escape and the game will end
+		if(key == KeyEvent.VK_SPACE){ //this will only be activated if in the game or in the shop
+			if(Game.gameState == STATE.Game) Game.gameState = STATE.Shop;//if space bar is pressed and in game, player will switch to shop
+			else if(Game.gameState == STATE.Shop) Game.gameState = STATE.Game; //if space bar is pressed and in shop, player will switch back to game
+		}
 	}
 	
 	public void keyReleased(KeyEvent e){ //so for the key release the keys need to stop so velocity is 0

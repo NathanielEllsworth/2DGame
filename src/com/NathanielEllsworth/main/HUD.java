@@ -47,6 +47,7 @@ public class HUD {
 		//drawing out the score and level displays
 		g.drawString("Score: " + score, 17, 64); // x variable is 17, y variable is 64
 		g.drawString("Level: " + level, 17, 80);// x variable is 17, y variable is 80
+		g.drawString("Space for Shop", 17, 94);
 		
 		
 	}

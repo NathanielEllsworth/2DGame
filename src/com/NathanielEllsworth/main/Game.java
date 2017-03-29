@@ -37,10 +37,13 @@ public class Game extends Canvas implements Runnable {
 	
 	private Menu menu;
 	
+	private Shop shop;
+	
 	public enum STATE{ //adding menu before the game starts
 		Menu,
 		Select,
 		Help,
+		Shop,
 		Game,
 		End
 	};
@@ -56,6 +59,7 @@ public class Game extends Canvas implements Runnable {
 		//because the window class was being created before the handler class was when the game was initializing starting
 		//the game does not see anything until it is initialized
 		hud = new HUD();//H.U.D. has to be above 'Menu' to compile correctly (you will get an error if this is anywhere else)(have to create it before you can use it)
+		shop = new Shop(handler);
 		menu = new Menu(this, handler, hud);
 		this.addKeyListener(new KeyInput(handler, this));//tells the game "Hey, were going to be using keyboard keys so make sure you're
 		//'listening' for it." I'm pretty sure it's called the ascii keys where Q will be 81, A is 65, Z is 90, etc. each
@@ -175,7 +179,7 @@ public class Game extends Canvas implements Runnable {
 				}
 			}
 			
-		}else if(gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select){
+		}else if(gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select || gameState == STATE.Help){
 			menu.tick();
 			handler.tick();
 			
@@ -195,21 +199,22 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		handler.render(g);
-		
 		if(paused){
 			g.setColor(Color.white);
 			g.drawString("PAUSED", 100, 100);
 		}
 		
 		
-		if(gameState == STATE.Game)
-		{
+		if(gameState == STATE.Game){
 			hud.render(g); // code reads from top to bottom so this goes underneath the handler.
 			//first it renders all of the objects (handler) then it renders the Heads-Up_Display (h.u.d.)
 			//so the heads up display renders on top of the player
-		}else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select){
+			handler.render(g);
+		}else if(gameState == STATE.Shop){
+			shop.render(g);//this will render shop when you are in the state of shop
+		}else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select || gameState == STATE.Help){
 			menu.render(g);
+			handler.render(g);
 		}
 		
 		g.dispose();
