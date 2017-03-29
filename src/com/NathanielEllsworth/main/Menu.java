@@ -46,9 +46,16 @@ public class Menu extends MouseAdapter{
 		}
 			
 		//help button
-		if(mouseOver(mx, my, 210, 250, 200, 64)){
+		if(mouseOver(mx, my, 80, 250, 200, 64)){
 			game.gameState = STATE.Help;
 			
+			AudioPlayer.getSound("menu_sound").play();
+		}
+		
+		//portfolio button *******************************************************************************************
+		if(mouseOver(mx, my, 320, 250, 200, 64)){
+			game.gameState = STATE.Portfolio;
+					
 			AudioPlayer.getSound("menu_sound").play();
 		}
 					
@@ -94,6 +101,17 @@ public class Menu extends MouseAdapter{
 		
 		//back button for help
 		if(game.gameState == STATE.Help){
+			if(mouseOver(mx, my, 210, 350, 200, 64)){
+				game.gameState = STATE.Menu;
+				
+				AudioPlayer.getSound("menu_sound").play();
+				
+				return;
+			}
+		}
+		
+		//back button for portfolio ***************************************************************************
+		if(game.gameState == STATE.Portfolio){
 			if(mouseOver(mx, my, 210, 350, 200, 64)){
 				game.gameState = STATE.Menu;
 				
@@ -151,8 +169,12 @@ public class Menu extends MouseAdapter{
 			g.drawString("Play", 270, 190);
 			
 			//Help
-			g.drawRect(210, 250, 200, 64);
-			g.drawString("Help", 270, 290);
+			g.drawRect(80, 250, 200, 64);
+			g.drawString("Help", 150, 290);
+			
+			//Portfolio
+			g.drawRect(320, 250, 200, 64);
+			g.drawString("Portfolio", 358, 290);
 			
 			//Quit
 			g.drawRect(210, 350, 200, 64);
@@ -177,6 +199,40 @@ public class Menu extends MouseAdapter{
 			
 			//Back Button
 			g.setFont(fnt2);
+			g.drawRect(210, 350, 200, 64);
+			g.drawString("Back", 270, 390);
+
+			//Portfolio page
+		}else if(game.gameState == STATE.Portfolio){
+			Font fnt = new Font("arial", 1, 50);
+			Font fnt2 = new Font("arial", 1, 30);
+			Font fnt3 = new Font("arial", 1, 20);
+			
+			//Help header
+			g.setFont(fnt);
+			g.setColor(Color.white);
+			g.drawString("Portfolio", 205, 70);
+			
+			g.setFont(fnt3);
+			//g.drawString("Use W, A, S, D, keys to move player and dodge enemies", 60, 210);
+			g.drawString("I know looking through countless profiles and bios must get old", 15, 135);
+			g.drawString("so I thought I would help break up the day and make a fun", 40, 165);
+			g.drawString("little Java game for ya! Feel free to come back anytime but", 40, 195);
+			g.drawString("let's see if you can beat me at my own game", 105, 225);
+			
+			g.setFont(fnt);
+			g.setColor(Color.red);
+			g.drawString(">:) Score: 5,000", 115, 285);
+			
+			g.setFont(fnt3);
+			g.setColor(Color.white);
+			g.drawString("Good Luck!", 470, 320);
+			
+			
+			
+			//Back Button
+			g.setFont(fnt2);
+			g.setColor(Color.white);
 			g.drawRect(210, 350, 200, 64);
 			g.drawString("Back", 270, 390);
 
