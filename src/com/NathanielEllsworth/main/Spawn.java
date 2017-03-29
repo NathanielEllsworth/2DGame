@@ -32,7 +32,8 @@ public class Spawn {
 	public void tick(){
 		scoreKeep++;
 		
-		if(scoreKeep >= 100){ //every time the score reaches this number, the player will reach the next level, this goes on indefinitely (or a max integer value)
+		if(scoreKeep >= 10000){ //****************************************************
+			//every time the score reaches this number, the player will reach the next level, this goes on indefinitely (or a max integer value)
 			scoreKeep = 0;
 			hud.setLevel(hud.getLevel() + 1);
 			

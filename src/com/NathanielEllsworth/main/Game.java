@@ -59,12 +59,13 @@ public class Game extends Canvas implements Runnable {
 		//because the window class was being created before the handler class was when the game was initializing starting
 		//the game does not see anything until it is initialized
 		hud = new HUD();//H.U.D. has to be above 'Menu' to compile correctly (you will get an error if this is anywhere else)(have to create it before you can use it)
-		shop = new Shop(handler);
+		shop = new Shop(handler, hud);
 		menu = new Menu(this, handler, hud);
 		this.addKeyListener(new KeyInput(handler, this));//tells the game "Hey, were going to be using keyboard keys so make sure you're
 		//'listening' for it." I'm pretty sure it's called the ascii keys where Q will be 81, A is 65, Z is 90, etc. each
 		//number corresponds to a different key on the keyboard
 		this.addMouseListener(menu);
+		this.addMouseListener(shop);
 		
 		AudioPlayer.load();
 		AudioPlayer.getMusic("music").loop();
@@ -179,7 +180,7 @@ public class Game extends Canvas implements Runnable {
 				}
 			}
 			
-		}else if(gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select || gameState == STATE.Help){
+		}else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select){
 			menu.tick();
 			handler.tick();
 			
@@ -212,7 +213,7 @@ public class Game extends Canvas implements Runnable {
 			handler.render(g);
 		}else if(gameState == STATE.Shop){
 			shop.render(g);//this will render shop when you are in the state of shop
-		}else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select || gameState == STATE.Help){
+		}else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select){
 			menu.render(g);
 			handler.render(g);
 		}

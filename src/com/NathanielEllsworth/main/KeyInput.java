@@ -42,10 +42,10 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				// in here will be all the key events for player 1
 				
-				if(key == KeyEvent.VK_W) { tempObject.setVelY(-5); keyDown[0]=true; }
-				if(key == KeyEvent.VK_S) { tempObject.setVelY(5); keyDown[1]=true; }
-				if(key == KeyEvent.VK_D) { tempObject.setVelX(5); keyDown[2]=true; }
-				if(key == KeyEvent.VK_A) { tempObject.setVelX(-5); keyDown[3]=true; }
+				if(key == KeyEvent.VK_W) { tempObject.setVelY(-handler.spd); keyDown[0]=true; }
+				if(key == KeyEvent.VK_S) { tempObject.setVelY(handler.spd); keyDown[1]=true; }
+				if(key == KeyEvent.VK_D) { tempObject.setVelX(handler.spd); keyDown[2]=true; }
+				if(key == KeyEvent.VK_A) { tempObject.setVelX(-handler.spd); keyDown[3]=true; }
 				
 				//so basically what this is saying is 
 				//"if the object has the ID of Player, then check if the keyboard key W is being hit, then pretend 

@@ -21,6 +21,8 @@ public class Handler {
 	
 	LinkedList<GameObject> object = new LinkedList<GameObject>();
 	
+	public int spd = 5;
+	
 	// need basic methods
 	public void tick(){
 		for(int i = 0; i < object.size(); i++){

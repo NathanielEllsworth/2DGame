@@ -14,6 +14,7 @@ import java.awt.Graphics;
  */
 public class HUD {
 	
+	public int bounds = 0;
 	public static float HEALTH = 100; //instead of having to initialize the instance of the HUD class, I can now just say HUD.HEALTH
 	// I don't have to initialize it, I don't have to say HUD = new HUD, just makes things easier and it can be static since
 	//this will be the only instance HEALTH will be needed by an object (the player)
@@ -27,21 +28,23 @@ public class HUD {
 	
 	
 	public void tick(){
-		HEALTH = Game.clamp(HEALTH, 0, 100); // clamps the health inside the health bar, the health also won't be able to go above 100 (max)
+		HEALTH = Game.clamp(HEALTH, 0, 100 + (bounds/2)); // clamps the health inside the health bar, the health also won't be able to go above 100 (max)
+		// bounds is divided by 2 because in the fillRect the health is multiplied by 2
+		greenValue = HEALTH*2;
 		greenValue = Game.clamp(greenValue, 0, 255); // clamp the green to transition into red when low
 		
-		greenValue = HEALTH*2;
+		
 		
 		score++; //makes the score go up, level changes every 1,000 points
 	}
 	
 	public void render(Graphics g){
 		g.setColor(Color.gray);
-		g.fillRect(15, 15, 200, 32);
+		g.fillRect(15, 15, 200 + bounds, 32);
 		g.setColor(new Color(75, (int)greenValue, 0)); //red is 75, green is greenValue, blue is 0 (r.g.b.)
 		g.fillRect(15, 15, (int)HEALTH * 2, 32);
 		g.setColor(Color.white);
-		g.drawRect(15, 15, 200, 32); //just puts a boarder around the health bar
+		g.drawRect(15, 15, 200 + bounds, 32); //just puts a boarder around the health bar
 		
 		
 		//drawing out the score and level displays
