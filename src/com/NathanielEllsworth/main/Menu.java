@@ -192,9 +192,9 @@ public class Menu extends MouseAdapter{
 			g.drawString("Help", 255, 70);
 			
 			g.setFont(fnt3);
-			g.drawString("Use W, A, S, D, keys to move player and dodge enemies", 60, 210);
-			g.drawString("Use the P key to Pause the game", 160, 250);
-			g.drawString("Use the Space Bar key to access the Shop", 100, 285);
+			g.drawString("Use W, A, S, D, keys to move player and dodge enemies", 60, 180);
+			g.drawString("Use the P key to Pause the game", 160, 215);
+			g.drawString("Use the Space Bar key to access the Shop", 100, 250);
 			
 			
 			//Back Button
@@ -215,18 +215,18 @@ public class Menu extends MouseAdapter{
 			
 			g.setFont(fnt3);
 			//g.drawString("Use W, A, S, D, keys to move player and dodge enemies", 60, 210);
-			g.drawString("I know looking through countless profiles and bios must get old", 15, 135);
-			g.drawString("so I thought I would help break up the day and make a fun", 40, 165);
-			g.drawString("little Java game for ya! Feel free to come back anytime but", 40, 195);
-			g.drawString("let's see if you can beat me at my own game", 105, 225);
+			g.drawString("Looking through countless profiles and bios must get old", 42, 135);
+			g.drawString("so I thought I would help break up the day and make a fun", 40, 170);
+			g.drawString("little Java game for ya! Feel free to come back anytime!", 40, 205);
+			g.drawString("Let's see if you can beat me at my own game", 105, 240);
 			
 			g.setFont(fnt);
 			g.setColor(Color.red);
-			g.drawString(">:) Score: 5,000", 115, 285);
+			g.drawString(">:) Score: 5,000", 115, 295);
 			
 			g.setFont(fnt3);
 			g.setColor(Color.white);
-			g.drawString("Good Luck!", 470, 320);
+			g.drawString("Good Luck!", 470, 335);
 			
 			
 			

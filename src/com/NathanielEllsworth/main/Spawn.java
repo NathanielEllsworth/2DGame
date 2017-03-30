@@ -32,7 +32,7 @@ public class Spawn {
 	public void tick(){
 		scoreKeep++;
 		
-		if(scoreKeep >= 10000){ //****************************************************
+		if(scoreKeep >= 500){ //****************************************************
 			//every time the score reaches this number, the player will reach the next level, this goes on indefinitely (or a max integer value)
 			scoreKeep = 0;
 			hud.setLevel(hud.getLevel() + 1);
@@ -67,8 +67,12 @@ public class Spawn {
 				if(hud.getLevel() == 2){ //comment out this if line to have an enemy appear every time scoreKeep reaches that interval
 					handler.addObject(new HardEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 					
+					handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+					
 				}else if(hud.getLevel() == 3){ 
 					handler.addObject(new HardEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+					
+					handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 					
 				}else if(hud.getLevel() == 4){ 
 					handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.FastEnemy, handler));

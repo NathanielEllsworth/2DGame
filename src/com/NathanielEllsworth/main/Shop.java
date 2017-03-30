@@ -32,33 +32,70 @@ public class Shop extends MouseAdapter{
 	}
 	
 	public void render(Graphics g){
+		Font fnt = new Font("arial", 1, 50);
+		Font fnt2 = new Font("arial", 1, 12);
+		Font fnt3 = new Font("arial", 1, 20);
 		
 		//header
-		g.setColor(Color.white);
-		g.setFont (new Font("arial", 0, 48));
-		g.drawString("SHOP", Game.WIDTH/2-100, 50);
+		g.setColor(Color.green);
+		g.setFont (fnt);
+		g.drawString("SHOP", 235, 70);
 		
 		//boxes
 		
 		//box 1 "Upgrade Health"
-		g.setFont(new Font("arial", 0, 12));
-		g.drawString("Upgrade Health", 110, 120);
-		g.drawString("Cost: " + B1 , 110, 140); // just going to use the actual score as it adds up (score = payment system)
+		g.setColor(Color.white);
+		g.setFont(fnt2);
+		g.drawString("Upgrade Health", 110, 200);
+		g.drawString("Cost: " + B1 , 110, 220); // just going to use the actual score as it adds up (score = payment system)
 		g.drawRect(100, 100, 100, 80);
 		
 		//box 2 "Upgrade Speed"
-		g.drawString("Upgrade Speed", 260, 120);
-		g.drawString("Cost: " + B2 , 260, 140); // just going to use the actual score as it adds up (score = payment system)
+		g.drawString("Upgrade Speed", 260, 200);
+		g.drawString("Cost: " + B2 , 260, 220); // just going to use the actual score as it adds up (score = payment system)
 		g.drawRect(250, 100, 100, 80);
 		
 		//box 3 "Refill Health"
-		g.drawString("Refill Health", 410, 120);
-		g.drawString("Cost: " + B3 , 410, 140); // just going to use the actual score as it adds up (score = payment system)
+		g.drawString("Refill Health", 410, 200);
+		g.drawString("Cost: " + B3 , 410, 220); // just going to use the actual score as it adds up (score = payment system)
 		g.drawRect(400, 100, 100, 80);
 		
 		
-		g.drawString("SCORE: " + hud.getScore(), Game.WIDTH/2-50, 300);
-		g.drawString("Press Space to go back", Game.WIDTH/2-50, 330);
+		g.setFont(fnt3);
+		g.drawString("TOTAL FUNDS: " + hud.getScore(), 210, 280);
+		g.drawString("Press Space to go back", 195, 340);
+		
+		
+		//Box 1
+		
+		g.setColor(Color.green);     
+		g.fillRect(110, 125, 50, 8); //small health bar
+		g.setColor(Color.red);		 
+		g.fillRect(159, 125, 6, 8);  //small damage on health bar
+		g.setColor(Color.green);
+		g.fillRect(110, 150, 80, 8); // Upgraded health bar
+		
+		
+		//Box 2
+		
+		g.setColor(Color.white);
+		g.fillRect(305, 125, 32, 32); // Player
+		g.fillRect(260, 130, 32, 2); // Speed Tail
+		g.fillRect(266, 140, 32, 2); // Speed Tail
+		g.fillRect(260, 150, 32, 2); // Speed Tail
+		
+		
+		//Box 3
+		
+		g.setColor(Color.green);     
+		g.fillRect(410, 125, 4, 8); //small health bar
+		g.setColor(Color.red);		 
+		g.fillRect(414, 125, 76, 8);  //small damage on health bar
+		g.setColor(Color.green);
+		g.fillRect(410, 150, 80, 8); // Upgraded health bar
+		
+		
+		
 	}
 	
 	public void mousePressed(MouseEvent e){
@@ -79,6 +116,7 @@ public class Shop extends MouseAdapter{
 					//which is not what you want. you just want it just at 200. (you're off setting the heads-up-display by dividing by 2)
 				}
 			}
+//			AudioPlayer.getSound("shop_sound").play();
 		}
 		
 		//box 2
@@ -92,6 +130,7 @@ public class Shop extends MouseAdapter{
 					handler.spd++; //so every time you upgrade it will go from 5 to 6 to 7 to 8 to 9 etc. (class KeyInput lines 45 to 48) 
 				}
 			}
+//			AudioPlayer.getSound("shop_sound").play();
 		}
 		
 		//box 3
@@ -104,6 +143,7 @@ public class Shop extends MouseAdapter{
 					hud.HEALTH = (100 + (hud.bounds/2));
 				}
 			}
+//			AudioPlayer.getSound("shop_sound").play();
 		}
 		
 	}
