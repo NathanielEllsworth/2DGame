@@ -126,7 +126,7 @@ public class Menu extends MouseAdapter{
 			if(mouseOver(mx, my, 210, 350, 200, 64)){
 				game.gameState = STATE.Menu;
 				hud.setLevel(1);
-				hud.setScore(0);
+				hud.setFunds(0);
 				AudioPlayer.getSound("menu_sound").play();
 			}
 		}
@@ -215,18 +215,19 @@ public class Menu extends MouseAdapter{
 			
 			g.setFont(fnt3);
 			//g.drawString("Use W, A, S, D, keys to move player and dodge enemies", 60, 210);
-			g.drawString("Looking through countless profiles and bios must get old", 42, 135);
-			g.drawString("so I thought I would help break up the day and make a fun", 40, 170);
-			g.drawString("little Java game for ya! Feel free to come back anytime!", 40, 205);
-			g.drawString("Let's see if you can beat me at my own game", 105, 240);
+			g.drawString("Looking through countless profiles and bios must get old", 42, 105);
+			g.drawString("so I thought I would help break it up and make a fun little", 40, 140);
+			g.drawString("Java game for ya! Feel free to come back anytime! ..but", 40, 175);
+			g.drawString("Let's see if you can beat me at my own game", 105, 210);
 			
 			g.setFont(fnt);
 			g.setColor(Color.red);
-			g.drawString(">:) Score: 5,000", 115, 295);
+			g.drawString(">:) Level: 30", 150, 260);
 			
 			g.setFont(fnt3);
 			g.setColor(Color.white);
-			g.drawString("Good Luck!", 470, 335);
+			g.drawString("Pass the dirty thirty and I will personally buy you lunch", 45, 295);
+			g.drawString("..Good Luck!", 440, 330); //260
 			
 			
 			
@@ -247,7 +248,7 @@ public class Menu extends MouseAdapter{
 			g.drawString("Game Over", 190, 100);
 			
 			g.setFont(fnt);
-			g.drawString("Your Score: " + hud.getScore() , 115, 240);
+			g.drawString("Level Reached: " + hud.getLevel() , 115, 240);
 			
 			
 			//Back Button

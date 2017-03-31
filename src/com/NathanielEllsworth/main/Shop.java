@@ -62,7 +62,7 @@ public class Shop extends MouseAdapter{
 		
 		
 		g.setFont(fnt3);
-		g.drawString("TOTAL FUNDS: " + hud.getScore(), 210, 280);
+		g.drawString("TOTAL FUNDS: " + hud.getFunds(), 210, 280);
 		g.drawString("Press Space to go back", 195, 340);
 		
 		
@@ -107,8 +107,8 @@ public class Shop extends MouseAdapter{
 			if(my >= 100 && my <= 180){
 				// if clicked between these positions than you have selected box 1 (Upgrade Health)
 				//System.out.println("box 1");
-				if(hud.getScore() >= B1){
-					hud.setScore(hud.getScore() - B1); //so it's going to take the score that you have now and subtract it by B1 (which is a thousand)
+				if(hud.getFunds() >= B1){
+					hud.setFunds(hud.getFunds() - B1); //so it's going to take the score that you have now and subtract it by B1 (which is a thousand)
 					B1 += 100;//***********************************
 					hud.bounds += 20;
 					hud.HEALTH = (100 + (hud.bounds/2)); // set it to 100 because thats the starting value and say you upgrade your health 5 times
@@ -124,8 +124,8 @@ public class Shop extends MouseAdapter{
 			if(my >= 100 && my <= 180){
 				// if clicked between these positions than you have selected box 2 (Upgrade Speed)
 				//System.out.println("box 2");
-				if(hud.getScore() >= B2){
-					hud.setScore(hud.getScore() - B2); //so it's going to take the score that you have now and subtract it by B1 (which is a thousand)
+				if(hud.getFunds() >= B2){
+					hud.setFunds(hud.getFunds() - B2); //so it's going to take the score that you have now and subtract it by B1 (which is a thousand)
 					B2 += 100;//*************************************
 					handler.spd++; //so every time you upgrade it will go from 5 to 6 to 7 to 8 to 9 etc. (class KeyInput lines 45 to 48) 
 				}
@@ -138,8 +138,8 @@ public class Shop extends MouseAdapter{
 			if(my >= 100 && my <= 180){
 				// if clicked between these positions than you have selected box 3 (Refill Health)
 				//System.out.println("box 3");
-				if(hud.getScore() >= B3){
-					hud.setScore(hud.getScore() - B3); //so it's going to take the score that you have now and subtract it by B1 (which is a thousand)
+				if(hud.getFunds() >= B3){
+					hud.setFunds(hud.getFunds() - B3); //so it's going to take the score that you have now and subtract it by B1 (which is a thousand)
 					hud.HEALTH = (100 + (hud.bounds/2));
 				}
 			}

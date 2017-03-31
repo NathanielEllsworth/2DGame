@@ -22,7 +22,7 @@ public class HUD {
 	private float greenValue = 255f; //r.g.b. (red green blue) color runs the full spectrum of colors at 255
 	//100% green (255) will transition into red (75)
 	
-	private int score = 0;
+	private int funds = 0;
 	
 	private int level = 1;
 	
@@ -35,7 +35,7 @@ public class HUD {
 		
 		
 		
-		score++; //makes the score go up, level changes every 1,000 points
+		funds++; //makes the score go up, level changes every 1,000 points
 	}
 	
 	public void render(Graphics g){
@@ -48,19 +48,19 @@ public class HUD {
 		
 		
 		//drawing out the score and level displays
-		g.drawString("Score: " + score, 17, 64); // x variable is 17, y variable is 64
+		g.drawString("Funds: " + funds, 17, 64); // x variable is 17, y variable is 64
 		g.drawString("Level: " + level, 17, 80);// x variable is 17, y variable is 80
 		g.drawString("Space for Shop", 17, 94);
 		
 		
 	}
 	
-	public void setScore(int score){
-		this.score = score;
+	public void setFunds(int funds){
+		this.funds = funds;
 	}
 	
-	public int getScore(){
-		return score;
+	public int getFunds(){
+		return funds;
 	}
 	
 	public int getLevel(){
